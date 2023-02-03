@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect} from 'react'
 
 type ChangeProps = {
   changeCount: (count: number, 
@@ -15,6 +15,7 @@ type ChangeProps = {
 }
 
 function App2 ({changeCount, changeInput, firstRender, rendered}: ChangeProps) {
+  
   const [count, setCount] = useState(0);
   const [inputText, setInputText] = useState('');
   const [fontSize, setFontSize] = useState(16);
@@ -28,7 +29,7 @@ function App2 ({changeCount, changeInput, firstRender, rendered}: ChangeProps) {
   });
 
   return (
-    <div className='task-wrapper'>    
+    <div className='wrapper'>    
       <div className='container__row'>
         <button onClick={() => changeCount(count, setCount, fontSize, setFontSize)}>+</button>
         <span className='comment'>// Adds 1 to count</span>
@@ -44,7 +45,7 @@ function App2 ({changeCount, changeInput, firstRender, rendered}: ChangeProps) {
                placeholder='Type here, output ↓'
                onChange={(event) => changeInput(event, setInputText)}
         />
-        <span className='comment'>// On input change input text is shown below</span>
+        <span className='comment'>// On input change, input text is shown below</span>
       </div>
 
       <div className='container__row'>

@@ -1,6 +1,6 @@
-import { useState, useEffect, useRef } from 'react'
 import App1 from './App1'
 import App2 from './App2';
+import App3 from './App3';
 
 function App() {
 
@@ -79,8 +79,7 @@ function App() {
       <div className='container__row'>
         <h2>Task 3</h2>
       </div>
-
-
+      <App3 />
 
     </div>
   )

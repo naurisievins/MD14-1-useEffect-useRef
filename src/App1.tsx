@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import './App.css'
 
 function App1() {
+  
   const [count, setCount] = useState(0);
   const [countX2, setCountX2] = useState(0);
   const [disabled, setDisabled] = useState(true);
@@ -36,7 +37,7 @@ function App1() {
 
 
   return (
-    <div className='task-wrapper'>
+    <div className='wrapper'>
       
       <div className='container__row'>
         <input type='text' placeholder='Focus on page load' ref={inputFocus1} />
@@ -74,7 +75,7 @@ function App1() {
 
       <div className='container__row'>
         {colorArray.map(color => {return(
-          <div className='color-box' key={Math.random() * 10103149198} style={{backgroundColor: `${color}`}}>{color}</div>
+          <div className='color-box' key={Math.random() * 90103149198} style={{backgroundColor: color}}>{color}</div>
         )})}
       </div>
     </div>
