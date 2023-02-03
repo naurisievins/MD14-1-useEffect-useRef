@@ -1,84 +1,86 @@
 import { useState, useEffect, useRef } from 'react'
-import './App.css'
+import App1 from './App1'
+import App2 from './App2';
 
 function App() {
-  const [count, setCount] = useState(0);
-  const [countX2, setCountX2] = useState(0);
-  const [disabled, setDisabled] = useState(true);
-  const [inputArray, setInputArray] = useState<string[]>([]);
-  const [inputText, setInputText] = useState('');
-  const [color, setColor] = useState('#000000');
-  const [colorArray, setColorArray] = useState<string[]>([]);
 
-  const inputFocus1 = useRef<HTMLInputElement>();
-  const inputFocus2 = useRef<HTMLInputElement>();
+  // Task 2 Form 1
 
-  useEffect(() => {
-    setCountX2(count * 2);
-  }, [count]);
-
-  useEffect(() => {
-    setTimeout(() => setDisabled(false), 5000);
-    inputFocus1.current && inputFocus1.current.focus();
-  }, []);
-
-  const handleInputSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    setInputArray([...inputArray, inputText]);
-    setInputText('');
-    inputFocus2.current && inputFocus2.current.focus();
+  const changeCount = (count: number,
+                       setCount: React.Dispatch<React.SetStateAction<number>>
+                      ) => {
+    setCount(count + 1);
+    console.log('Changing count!');
   }
 
-  const createColorEle = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    setColorArray([...colorArray, color]);
+  const changeInput = (e: React.ChangeEvent<HTMLInputElement>,
+                       setInputText: React.Dispatch<React.SetStateAction<string>>
+                      ) => {
+    setInputText(e.target.value);
+    console.log('Input change!');
   }
 
+  const firstRender = () => {
+    console.log('First render!')
+  }
 
+  const rendered = () => {
+    console.log('Rendered!')
+  }
+
+  // Task 2 Form 2
+
+  const changeCount2 = (count: number, 
+                        setCount: React.Dispatch<React.SetStateAction<number>>,
+                        fontSize: number,
+                        setFontSize: React.Dispatch<React.SetStateAction<number>>
+                       ) => {
+    setCount(count + 1);
+    setFontSize(fontSize + 1);
+  }
+
+  const changeInput2 = (e: React.ChangeEvent<HTMLInputElement>,
+                        setInputText: React.Dispatch<React.SetStateAction<string>>
+                       ) => {
+      setInputText(e.target.value);
+      document.title = e.target.value;
+    }
+
+  const firstRender2 = (setCount: React.Dispatch<React.SetStateAction<number>>) => {
+    setCount(100)
+  }
+
+  const rendered2 = () => {
+  }
+
+ 
   return (
     <div className='container'>
+      
+      <div className='container__row'>
+        <h2>Task 1</h2>
+      </div>
+        <App1 />
 
       <div className='container__row'>
-        <input type='text' placeholder='Focus on page load' ref={inputFocus1} />
+        <h2>Task 2</h2>
       </div>
+        <App2 changeCount={(count, setCount) => changeCount(count, setCount)}
+              changeInput={(event, setInputText) => changeInput(event, setInputText)}
+              firstRender={() => firstRender()}
+              rendered={() => rendered()}
+        />
+        <App2 changeCount={(count, setCount, fontSize, setFontSize) => changeCount2(count, setCount, fontSize, setFontSize)}
+              changeInput={(event, setInputText) => changeInput2(event, setInputText)}
+              firstRender={(setCount) => firstRender2(setCount)}
+              rendered={() => rendered2()} // Not using
+        />
 
       <div className='container__row'>
-        <form>
-          <input type='text' placeholder='Output on submit ↓' ref={inputFocus2} value={inputText} onChange={(e) => setInputText(e.target.value)} />
-          <button onClick={handleInputSubmit}>Submit</button>
-        </form>
+        <h2>Task 3</h2>
       </div>
 
-      <div className='container__row'>
-        <span>{inputArray.map(input => (`${input} `))}</span>
-      </div>
 
-      <div className='container__row'>
-        <button disabled={disabled}>Poga</button><span>On page load button is disabled for 5 seconds.</span>
-      </div>
-
-      <div className='container__row'>
-        <button onClick={() => setCount(count + 1)}>Count: <b>{count}</b></button>
-        <span>Adds 1 to the count when pressed. Multiplies count by 2 and displays in box below.</span>
-      </div>
-
-      <div className='container__row'>
-        <div className='count-box'>Count: <b>{countX2}</b></div>
-      </div>
-
-      <div className='container__row'>
-        <button onClick={createColorEle}>+</button>
-        <input type="color" value={color} onChange={(e) => setColor(e.target.value)} />
-        <span>When + is pressed it creats box in chosen color.</span>
-      </div>
-
-      <div className='container__row'>
-        {colorArray.map(color => {return(
-          <div className='color-box' key={Math.random() * 10103149198} style={{backgroundColor: `${color}`}}>{color}</div>
-        )})}
-        
-
-      </div>
 
     </div>
   )

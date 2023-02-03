@@ -23,6 +23,7 @@ input {
 .container__row {
   padding: 10px;
   width: 100%;
+  height: auto;
   display:flex;
   flex-wrap: wrap;
   gap: 20px;
@@ -49,4 +50,19 @@ input {
 form {
   display: flex;
   gap: 10px;
+}
+
+hr {
+  width: 100%;
+}
+
+.comment {
+  font-style: italic;
+  color: rgba(159, 163, 160, 0.397)
+}
+
+.task-wrapper {
+  width: 100%;
+  border: 2px solid gray;
+  border-radius: 5px;
 }
