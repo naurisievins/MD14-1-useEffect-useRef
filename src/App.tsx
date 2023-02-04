@@ -49,10 +49,6 @@ function App() {
   const firstRender2 = (setCount: React.Dispatch<React.SetStateAction<number>>) => {
     setCount(100)
   }
-
-  const rendered2 = () => {
-  }
-
  
   return (
     <div className='container'>
@@ -73,7 +69,6 @@ function App() {
         <App2 changeCount={(count, setCount, fontSize, setFontSize) => changeCount2(count, setCount, fontSize, setFontSize)}
               changeInput={(event, setInputText) => changeInput2(event, setInputText)}
               firstRender={(setCount) => firstRender2(setCount)}
-              rendered={() => rendered2()} // Not using
         />
 
       <div className='container__row'>

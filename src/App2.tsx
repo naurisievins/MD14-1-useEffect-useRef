@@ -11,7 +11,7 @@ type ChangeProps = {
                ) => void
   firstRender: (setCount: React.Dispatch<React.SetStateAction<number>>
                ) => void
-  rendered: () => void
+  rendered?: () => void
 }
 
 function App2 ({changeCount, changeInput, firstRender, rendered}: ChangeProps) {
@@ -25,7 +25,9 @@ function App2 ({changeCount, changeInput, firstRender, rendered}: ChangeProps) {
   }, []);
 
   useEffect(() => {
-    rendered();
+    if (rendered) {
+      rendered();
+    }
   });
 
   return (
